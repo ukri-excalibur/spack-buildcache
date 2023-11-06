@@ -31,7 +31,7 @@ jobs:
     - name: Set authentication method for mirror
       if: ${{ github.event_name == 'push' }}
       run: |
-        spack -e . mirror set --push --oci-username ${{ github.actor }} --oci-password "${{ secrets.GITHUB_TOKEN }}" excalibur-buildcache
+        spack -e . mirror set --oci-username ${{ github.actor }} --oci-password "${{ secrets.GITHUB_TOKEN }}" excalibur-buildcache
 
     - name: Concretize
       run: spack -e . concretize
