@@ -10,7 +10,6 @@ spack:
       padded_length: 128
   mirrors:
     spack-buildcache: oci://ghcr.io/spack/github-actions-buildcache
-    juliaparallel-buildcache: oci://ghcr.io/JuliaParallel/github-actions-buildcache
     excalibur-buildcache: oci://ghcr.io/ukri-excalibur/github-actions-buildcache
   packages:
     all:
