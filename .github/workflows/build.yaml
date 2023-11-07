@@ -48,6 +48,14 @@ jobs:
         spack -e . buildcache push -j $(($(nproc) + 1)) --unsigned --update-index excalibur-buildcache
       if: always()
 
+    # Install the cosign tool except on PR
+    # https://github.com/sigstore/cosign-installer
+    - name: Install cosign
+      if: github.event_name != 'pull_request'
+      uses: sigstore/cosign-installer@v3
+      with:
+        cosign-release: 'v1.13.1'
+
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
       with:
