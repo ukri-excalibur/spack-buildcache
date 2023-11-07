@@ -47,3 +47,8 @@ jobs:
       run: |
         spack -e . buildcache push -j $(($(nproc) + 1)) --unsigned --update-index excalibur-buildcache
       if: always()
+
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+      with:
+        limit-access-to-actor: true
