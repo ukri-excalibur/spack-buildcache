@@ -3,6 +3,7 @@ spack:
   specs:
     # - cp2k@9.1
     - hpgmg@0.4
+    - intel-mpi-benchmarks@2019.6
     - libint@2.6.0
     - sombrero@2021-08-16
     - swiftsim@0.9.0
