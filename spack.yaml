@@ -4,6 +4,7 @@ spack:
     # - cp2k@9.1
     - libint@2.6.0
     - sombrero@2021-08-16
+    - swiftsim@0.9.0
     - wrf@3.9.1.1
   concretizer:
     unify: false
