@@ -1,6 +1,8 @@
 spack:
   view: false
   specs:
+    # - cp2k@9.1
+    - libint@2.6.0
     - sombrero@2021-08-16
   concretizer:
     unify: false
