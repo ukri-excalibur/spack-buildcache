@@ -2,7 +2,6 @@ spack:
   view: false
   specs:
     # - cp2k@9.1
-    - grid@git.991667ba5e2a5dd972dd8f813e2a35be74b9adc9
     - hpgmg@0.4
     - intel-mpi-benchmarks@2019.6
     - libint@2.6.0
