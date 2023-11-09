@@ -17,7 +17,6 @@ spack:
       padded_length: 128
   mirrors:
     spack-buildcache: oci://ghcr.io/spack/github-actions-buildcache
-    temp-buildcache: oci://ghcr.io/ukri-excalibur/github-actions-buildcache
     excalibur-buildcache: oci://ghcr.io/ukri-excalibur/spack-buildcache
   packages:
     all:
