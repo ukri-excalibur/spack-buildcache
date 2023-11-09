@@ -47,47 +47,5 @@ jobs:
     - name: Push packages and update index
       timeout-minutes: 10
       run: |
-        spack -e . buildcache push -j $(($(nproc) + 1)) --oci-output-digests digests.txt --unsigned --update-index excalibur-buildcache
+        spack -e . buildcache push -j $(($(nproc) + 1)) --unsigned --update-index excalibur-buildcache
       if: always()
-
-    # Install the cosign tool except on PR
-    # https://github.com/sigstore/cosign-installer
-    - name: Install cosign
-      if: github.event_name != 'pull_request'
-      uses: sigstore/cosign-installer@v3
-      with:
-        cosign-release: 'v1.13.1'
-
-    # Login against a Docker registry except on PR
-    # https://github.com/docker/login-action
-    - name: Log into registry
-      if: github.event_name != 'pull_request'
-      uses: docker/login-action@v2
-      with:
-        registry: ${{ env.REGISTRY }}
-        username: ${{ github.actor }}
-        password: ${{ secrets.REGISTRY_TOKEN }}
-
-    - name: Write signing key to disk (only needed for `cosign sign --key`)
-      run: echo "${{ secrets.COSIGN_PRIVATE_KEY  }}" > cosign.key
-
-    # Sign the resulting Docker image digest except on PRs.
-    # This will only write to the public Rekor transparency log when the Docker
-    # repository is public to avoid leaking data.  If you would like to publish
-    # transparency data even for private images, pass --force to cosign below.
-    # https://github.com/sigstore/cosign
-    - name: Sign the published images
-      if: ${{ github.event_name != 'pull_request' }}
-      env:
-        COSIGN_EXPERIMENTAL: "true"
-        COSIGN_PASSWORD: ""
-      # This step uses the identity token to provision an ephemeral certificate
-      # against the sigstore community Fulcio instance.
-      run: |
-        DIGESTS="$(cat digests.txt)"
-        if [[ -n "${DIGESTS}" ]]; then
-            for image in ${DIGESTS}; do
-                echo "Signing ${image}..."
-                cosign sign --key cosign.key "${image}"
-            done
-        fi
