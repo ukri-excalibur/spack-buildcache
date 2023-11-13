@@ -24,7 +24,7 @@ jobs:
 
     - name: Install Spack
       run: |
-        git clone --depth=1 --branch=oci/dump-oci-digest-upon-upload https://github.com/haampie/spack.git
+        git clone --depth=1 https://github.com/spack/spack.git
         echo "${PWD}/spack/bin/" >> "${GITHUB_PATH}"
 
     - name: Spack version
